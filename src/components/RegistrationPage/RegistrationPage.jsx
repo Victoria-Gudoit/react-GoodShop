@@ -26,17 +26,11 @@ export const RegistrationPage = () => {
       .min(6, "Пароль не меньше 6 символов!")
       .required("Password is required"),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Пароли должны совпадать!")
+      .oneOf([Yup.ref("password")], "Пароли должны совпадать!")
       .required("Password is required"),
   });
 
-  const clickHandlerCalendar = (e) => {
-    e.preventDefault();
-    setCalendar(true);
-    if (calendar) {
-      setCalendar(false);
-    }
-  };
+ const clickHandlerCalendar = () => { setCalendar((prev) => !prev) }
 
   const handleSubmit = () => {
     checkAuth();
@@ -61,7 +55,7 @@ export const RegistrationPage = () => {
             <TextField label="First Name" name="firstName" type="text" />
             <TextField label="Last Name" name="lastName" type="text" />
             <div className={css.calendar}>
-              <button
+              <button type="button"
                 onClick={clickHandlerCalendar}
                 className={css.btn__calendar}
               >
@@ -76,7 +70,6 @@ export const RegistrationPage = () => {
               name="confirmPassword"
               type="password"
             />
-
             <div className={css.block}>
               <button className={css.btn} type="submit">
                 Зарегистрироваться

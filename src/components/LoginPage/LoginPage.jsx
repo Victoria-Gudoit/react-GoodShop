@@ -4,11 +4,11 @@ import { GoodsSelectors } from "store";
 import { useSelector } from "react-redux";
 
 export const LoginPage = () => {
-  const checkAuth = useSelector(GoodsSelectors.checkAuth);
+  const isAuth = useSelector(GoodsSelectors.getAuth);
 
   return (
     <div>
-      {checkAuth ? (
+      {isAuth ? (
         <button className={css.btn}>Выйти</button>
       ) : (
         <div>

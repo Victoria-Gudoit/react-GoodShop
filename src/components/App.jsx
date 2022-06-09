@@ -9,7 +9,7 @@ import { MainPage } from "./MainPage";
 import { RegistrationPage } from "./RegistrationPage";
 
 export const App = () => {
-  const checkAuth = useSelector(GoodsSelectors.checkAuth);
+  const isAuth = useSelector(GoodsSelectors.getAuth);
 
   return (
     <div className={css.wrapper}>
@@ -18,7 +18,7 @@ export const App = () => {
         <Route path="/" exact>
           <MainPage />
         </Route>
-        {checkAuth && <Redirect to="/" />}
+        {isAuth && <Redirect to="/" />}
         <Route path="/registration" exact>
           <RegistrationPage />
         </Route>
