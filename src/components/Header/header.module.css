@@ -1,0 +1,39 @@
+.wrapper {
+    position: fixed;
+    top: 0px;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1280px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+.list {
+    display: flex;
+    column-gap: 15px;
+}
+
+.link {
+    transition: all 0.3s;
+    color: #222;
+}
+
+.link:hover {
+    text-decoration: none;
+    color: rgb(148, 142, 142);
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 20px;
+    color: #222;
+}
+
+.logo:hover {
+    color: #000;
+}
