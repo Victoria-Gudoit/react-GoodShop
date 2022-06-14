@@ -155,7 +155,7 @@ createServer({
       return categories.slice(0, 5).map((category) => {
         const items = schema.goods.where({
           categoryTypeId: category.id,
-        }).models;
+        }).models.slice(0, 5);
 
         return { category, items };
       });

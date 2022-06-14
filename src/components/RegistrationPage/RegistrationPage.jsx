@@ -3,7 +3,7 @@ import css from "./registration.module.css";
 import { CalendarOriginal } from "../common";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { authAction } from "store";
+import { authAction } from "store/registrationSlice"; 
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import { TextField } from "./TextField";

@@ -3,13 +3,13 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import css from "./style.module.css";
-import { GoodsSelectors } from "store";
+import { registrationSelectors } from "store/registrationSlice";
 import { useSelector } from "react-redux";
 import { MainPage } from "./MainPage";
 import { RegistrationPage } from "./RegistrationPage";
 
 export const App = () => {
-  const isAuth = useSelector(GoodsSelectors.getAuth);
+  const isAuth = useSelector(registrationSelectors.getAuth);
 
   return (
     <div className={css.wrapper}>

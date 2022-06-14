@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {getGoodCategories} from "api/Api";
-import {LOAD_STATUSES} from "./constants";
+import {LOAD_STATUSES} from "../constants";
 
 export const fetchGoodCategories = createAsyncThunk("goodCategories/getGoodCategories", async () => {
     const result = await getGoodCategories();
