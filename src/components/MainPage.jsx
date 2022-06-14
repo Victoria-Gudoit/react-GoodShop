@@ -6,12 +6,12 @@ import { LoginPage } from "./LoginPage";
 
 export const MainPage = () => {
   return (
-    <div className={css.wrapper}>
+    <div className={css.wrapper}><LoginPage />
       <div className={css.block}>
         <MenuOriginal />
-        <LoginPage />
+          <Banner />
       </div>
-      <Banner />
+    
     </div>
   );
 };

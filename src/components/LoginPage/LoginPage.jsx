@@ -7,7 +7,7 @@ export const LoginPage = () => {
   const isAuth = useSelector(GoodsSelectors.getAuth);
 
   return (
-    <div>
+    <div className={css.wrapper}>
       {isAuth ? (
         <button className={css.btn}>Выйти</button>
       ) : (
