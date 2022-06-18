@@ -18,7 +18,7 @@ export const Card = (props) => (
                             style={{
                                 width: 200,}}
                             cover={<img className={css.img} alt="example" src={i.img} />}>
-                            <Meta title={i.label} description={i.price} />
+                            <Meta title={i.label} description={`${i.price} $`} />
                         </CardAntd> </Col>
                     ))}
                 </Row>

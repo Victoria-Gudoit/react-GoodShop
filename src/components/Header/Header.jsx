@@ -5,7 +5,7 @@ export const Header = () => {
   return (
     <header className={css.header}>
       <div className={css.wrapper}>
-        <Link to={"/books"} className={css.logo}>
+        <Link to={"/"} className={css.logo}>
           Book Friend
         </Link>
         <ul className={css.list}>

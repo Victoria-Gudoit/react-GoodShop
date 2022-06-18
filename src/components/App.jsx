@@ -7,6 +7,8 @@ import { registrationSelectors } from "store/registrationSlice";
 import { useSelector } from "react-redux";
 import { MainPage } from "./MainPage";
 import { RegistrationPage } from "./RegistrationPage";
+import { CategoryPage } from "./CategoryPage";
+import { Menu } from "./Menu";
 
 export const App = () => {
   const isAuth = useSelector(registrationSelectors.getAuth);
@@ -17,6 +19,12 @@ export const App = () => {
       <Switch>
         <Route path="/" exact>
           <MainPage />
+        </Route>
+        <Route path="/:id" exact>
+          <CategoryPage />
+        </Route>
+        <Route path="/:id" exact>
+          <Menu />
         </Route>
         {isAuth && <Redirect to="/" />}
         <Route path="/registration" exact>
