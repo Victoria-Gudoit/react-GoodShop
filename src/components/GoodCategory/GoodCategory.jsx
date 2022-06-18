@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { CardOriginal } from "components/Card";
+import { Card } from "components/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { popularCategoriesSelectors } from "store/popularCategoriesSlice";
 import { fetchPopularCategories } from "store/popularCategoriesSlice";
@@ -24,7 +24,7 @@ export const GoodCategory = () => {
     return (
         <div>
             {isLoading && <Loader />}
-            {isLoaded && <CardOriginal popularCategories={popularCategories} />}
+            {isLoaded && <Card popularCategories={popularCategories} />}
             {isError && <p>Ой, попробуйте еще раз</p>}
         </div>
     )

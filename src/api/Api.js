@@ -1,5 +1,4 @@
 import { request } from "./request";
-export * as getGoods from "./server";
 
 const HOST = "api/goods";
 // const HOST_ID = "api/goods?categoryTypeIds=";
@@ -11,7 +10,7 @@ export const getGood = (categoryTypeId) => {
 };
 
 export const getGoodCategories = () => {
-  return request(`${HOST_CATEGORIES}`);
+  return request(HOST_CATEGORIES);
 };
 
 export const getPopularCategories = () => {

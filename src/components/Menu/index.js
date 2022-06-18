@@ -1,1 +1,1 @@
-export {MenuOriginal} from "./Menu"
+export {Menu} from "./Menu"

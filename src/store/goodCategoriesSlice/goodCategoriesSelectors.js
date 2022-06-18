@@ -1,6 +1,8 @@
 import {LOAD_STATUSES} from "../constants";
 
-export const getGoodCategories = (state) => state.goodsCategories.data;
+const getGoodCategoriesSlice = (state) => state.goodsCategories;
+
+export const getGoodCategories = (state) => getGoodCategoriesSlice(state).data;
 
 export const getLoadStatus = (state) => state.goodsCategories.loadStatus;
 

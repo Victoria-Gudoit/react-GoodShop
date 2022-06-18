@@ -1,6 +1,8 @@
 import {LOAD_STATUSES} from "../constants";
 
-export const getPopularCategories = (state) => state.popularCategories.data;
+const getPopularCategoriesSlice = (state) => state.popularCategories;
+
+export const getPopularCategories = (state) => getPopularCategoriesSlice(state).data;
 
 export const getLoadStatus = (state) => state.popularCategories.loadStatus;
 

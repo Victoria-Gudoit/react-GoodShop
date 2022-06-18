@@ -1,18 +1,15 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { Menu } from "antd";
+import { Menu as MenuAntd } from "antd";
 import MenuItem from "antd/lib/menu/MenuItem";
 import { useEffect } from "react";
-import { GoodsCategoriesSelectors } from "store/goodCategoriesSlice"; 
-import { fetchGoodCategories } from "store/goodCategoriesSlice";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { GoodsCategoriesSelectors, fetchGoodCategories } from "store/goodCategoriesSlice"; 
+import { useSelector, useDispatch } from "react-redux";
 import css from "./menu.module.css";
 
-export const MenuOriginal = () => {
+export const Menu = () => {
 
     const goodCategories = useSelector(GoodsCategoriesSelectors.getGoodCategories)
-    const isLoaded = useSelector(GoodsCategoriesSelectors.isLoaded)
 
     const dispatch = useDispatch();
 
@@ -26,13 +23,14 @@ export const MenuOriginal = () => {
     return (
         <div>
             <h2 className={css.title}>Категории</h2>
-            <Menu> {
-                isLoaded && goodCategories.map((item) => (
+            <MenuAntd> 
+                { goodCategories.map((item) => (
                     <MenuItem>{
                         item.label
-                    }</MenuItem>
+                    }
+                    </MenuItem>
                 ))
-            } </Menu>
+            } </MenuAntd>
         </div>
     )
 }
