@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "antd/dist/antd.css";
 import { Menu as MenuAntd } from "antd";
 import MenuItem from "antd/lib/menu/MenuItem";
-import { useEffect } from "react";
-import { GoodsCategoriesSelectors, fetchGoodCategories } from "store/goodCategoriesSlice"; 
+import { GoodsCategoriesSelectors, fetchGoodCategories } from "store/goodCategoriesSlice";
 import { useSelector, useDispatch } from "react-redux";
 import css from "./menu.module.css";
+import { Link } from "react-router-dom";
 
 export const Menu = () => {
 
@@ -23,14 +23,14 @@ export const Menu = () => {
     return (
         <div>
             <h2 className={css.title}>Категории</h2>
-            <MenuAntd> 
-                { goodCategories.map((item) => (
+            <MenuAntd>
+                {goodCategories.map((item) => (
                     <MenuItem>{
-                        item.label
+                        <Link to={item.id}>{item.label}</Link>
                     }
                     </MenuItem>
                 ))
-            } </MenuAntd>
+                } </MenuAntd>
         </div>
     )
 }
