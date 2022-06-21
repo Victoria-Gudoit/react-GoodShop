@@ -10,3 +10,5 @@ export const LOAD_STATUSES = {
   export const POPULAR_CATEGORIES_SLICE = "popularCategories"
 
   export const CATEGORY_PAGE = "categoryPage"
+
+  export const PRODUCT_PAGE = "productPage"

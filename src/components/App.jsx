@@ -1,16 +1,17 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import css from "./style.module.css";
-import { registrationSelectors } from "store/registrationSlice";
-import { useSelector } from "react-redux";
 import { MainPage } from "./MainPage";
 import { RegistrationPage } from "./RegistrationPage";
 import { CategoryPage } from "./CategoryPage";
-import { Menu } from "./Menu";
+import { ProductPage } from "./ProductPage";
+import { registrationSelectors } from "store/registrationSlice";
+import css from "./style.module.css";
 
 export const App = () => {
+
   const isAuth = useSelector(registrationSelectors.getAuth);
 
   return (
@@ -20,11 +21,11 @@ export const App = () => {
         <Route path="/" exact>
           <MainPage />
         </Route>
-        <Route path="/:id" exact>
+        <Route path="/:categoryTypeId" exact>
           <CategoryPage />
         </Route>
-        <Route path="/:id" exact>
-          <Menu />
+        <Route path="/:categoryTypeId/:ids" exact>
+          <ProductPage />
         </Route>
         {isAuth && <Redirect to="/" />}
         <Route path="/registration" exact>
