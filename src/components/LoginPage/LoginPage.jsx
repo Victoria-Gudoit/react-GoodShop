@@ -1,13 +1,13 @@
 import css from "./loginPage.module.css";
 import { Link } from "react-router-dom";
-import { GoodsSelectors } from "store";
+import { registrationSelectors } from "store/registrationSlice"; 
 import { useSelector } from "react-redux";
 
 export const LoginPage = () => {
-  const isAuth = useSelector(GoodsSelectors.getAuth);
+  const isAuth = useSelector(registrationSelectors.getAuth);
 
   return (
-    <div>
+    <div className={css.wrapper}>
       {isAuth ? (
         <button className={css.btn}>Выйти</button>
       ) : (

@@ -1,3 +1,8 @@
+.wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .btn {
     margin: 0 10px 10px 0;
     font-size: 15px;
@@ -31,4 +36,8 @@
 
   ::placeholder {
     color: rgba(255, 255, 255, 0.87);
+  }
+
+  a {
+    color: #222;
   }
