@@ -14,5 +14,5 @@ export const getGoodCategories = () => {
 };
 
 export const getPopularCategories = () => {
-  return request(`${HOST_POPULAR_CATEGORIES}`);
+  return request(`${HOST_POPULAR_CATEGORIES}`)
 };
