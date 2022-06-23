@@ -24,7 +24,7 @@ export const App = () => {
         <Route path="/:categoryTypeId" exact>
           <CategoryPage />
         </Route>
-        <Route path="/:categoryTypeId/:ids" exact>
+        <Route path="/:categoryTypeId/:id" exact>
           <ProductPage />
         </Route>
         {isAuth && <Redirect to="/" />}

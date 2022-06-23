@@ -7,6 +7,7 @@ import { Card as CardAntd } from 'antd';
 import css from "../Card/card.module.css";
 import { categorySelectors, fetchCategory } from 'store/categoryPageSlice';
 import { Loader } from '../common';
+import { CardItem } from 'components/Card';
 const { Meta } = CardAntd;
 
 export const CategoryPage = () => {
@@ -35,14 +36,9 @@ export const CategoryPage = () => {
                 {isLoaded && category.map((item) => (
                     <Col className="gutter-row" span={6}>
                         <div className={css.wrapper}>
-                            <Link to={`/${categoryTypeId}/${item.id}`}> <CardAntd
-                                hoverable
-                                style={{
-                                    width: 200,
-                                }}
-                                cover={<img className={css.img} alt="example" src={item.img} />}>
-                                <Meta title={`${item.label} $`} description={item.price} />
-                            </CardAntd></Link>
+                            <Link to={`/${categoryTypeId}/${item.id}`}>
+                                <CardItem {...item}/>
+                            </Link>
                         </div>
                     </Col>
                 ))}  </Row>

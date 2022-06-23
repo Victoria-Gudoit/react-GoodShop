@@ -11,7 +11,7 @@ import { Loader } from "../common"
 
 
 export const ProductPage = () => {
-    const { ids } = useParams()
+    const { id } = useParams()
 
     const history = useHistory();
 
@@ -23,10 +23,10 @@ export const ProductPage = () => {
 
     const dispatch = useDispatch();
 
-    const getProduct = (ids) => dispatch(fetchProduct(ids))
+    const getProduct = (id) => dispatch(fetchProduct(id))
 
     useEffect(() => {
-        getProduct(ids)
+        getProduct(id)
     }, [])
 
 
@@ -45,6 +45,7 @@ export const ProductPage = () => {
                             <img className={css.img} alt="product" src={product.img} />
                             <p>{product.description}</p>
                             <p>{`${product.price} $`}</p>
+                            <button type='button'>Добавить в корзину</button>
                         </CardAntd></div>
                 </div>
                 ))}

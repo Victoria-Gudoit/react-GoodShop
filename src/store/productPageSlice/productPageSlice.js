@@ -2,8 +2,9 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {LOAD_STATUSES, PRODUCT_PAGE} from "../constants";
 import { getProductById } from "api/Api"; 
 
-export const fetchProduct = createAsyncThunk(`${PRODUCT_PAGE}/getCategory`, async (ids) => {
+export const fetchProduct = createAsyncThunk(`${PRODUCT_PAGE}/getProduct`, async (ids) => {
     const result = await getProductById(ids);
+    console.log(result.items);
     return result.items;
 });
 
