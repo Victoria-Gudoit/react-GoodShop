@@ -1,11 +1,10 @@
 import { getIsLoadingSeletor, getIsLoadedSeletor, getIsErrorSeletor } from "../common"
 
-const getPopularCategoriesSlice = (state) => state.popularCategories;
+const getProductSlice = (state) => state.productPage;
 
-export const getPopularCategories = (state) => getPopularCategoriesSlice(state).data;
+export const getProduct = (state) => getProductSlice(state).data;
 
-
-export const getLoadStatus = (state) => state.popularCategories.loadStatus;
+export const getLoadStatus = (state) => state.productPage.loadStatus;
 
 export const isLoading = getIsLoadingSeletor(getLoadStatus);
 export const isLoaded = getIsLoadedSeletor(getLoadStatus);
