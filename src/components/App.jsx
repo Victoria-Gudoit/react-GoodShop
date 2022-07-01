@@ -9,6 +9,8 @@ import { CategoryPage } from "./CategoryPage";
 import { ProductPage } from "./ProductPage";
 import { registrationSelectors } from "store/registrationSlice";
 import css from "./style.module.css";
+import { Cart } from "components/Cart";
+
 
 export const App = () => {
 
@@ -18,6 +20,9 @@ export const App = () => {
     <div className={css.wrapper}>
       <Header />
       <Switch>
+      <Route path="/cart/" exact>
+          <Cart />
+        </Route>
         <Route path="/" exact>
           <MainPage />
         </Route>
@@ -27,10 +32,12 @@ export const App = () => {
         <Route path="/:categoryTypeId/:id" exact>
           <ProductPage />
         </Route>
+
         {isAuth && <Redirect to="/" />}
         <Route path="/registration" exact>
           <RegistrationPage />
         </Route>
+     
         <Redirect to="/" />
       </Switch>
       <Footer />
