@@ -4,10 +4,14 @@ import { debounce } from "lodash";
 import { getProductByText } from "api/Api";
 import css from "./header.module.css";
 import { Input, DropDownSearch } from "../common"
+import { useSelector } from "react-redux";
+import { cartSelectors} from 'store/cartSlice';
 import { ShoppingCartOutlined } from "@ant-design/icons";
 
-export const Header = (props) => {
+export const Header = () => {
   const [text, setText] = useState("");
+
+  const goodInCart = useSelector(cartSelectors.getCart);
 
   const [options, setOptions] = useState([])
   const [dropDownSearch, setDropDownSearch] = useState(false)
@@ -15,7 +19,7 @@ export const Header = (props) => {
   const debouncedItems = useCallback(debounce((text) => {
     getProductByText(text).then((r) => setOptions(r.items)
     )
-  }, 1000))
+  }, 1000), [])
 
   useEffect(() => {
     if (text.length > 2) {
@@ -43,7 +47,7 @@ export const Header = (props) => {
             <li key={route}>
               <Link className={css.link} to={`/${route}`}>
                 <ShoppingCartOutlined style={{ fontSize: '23px' }} />
-                {props.counter}
+                {goodInCart?.length ? goodInCart?.length : ''}
               </Link>
             </li>
           ))}

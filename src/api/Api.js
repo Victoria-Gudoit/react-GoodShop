@@ -29,4 +29,6 @@ export const getCart = () => {
   return request(HOST_CART);
 };
 
+export const updateCart = (good, count) => { return request(HOST_CART, { method: 'PUT', body: JSON.stringify({ good, count }) }) }
+
 

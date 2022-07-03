@@ -1,2 +1,2 @@
-export { reducer as cartReducer, actions as cartActions, fetchCart} from "./cartSlice"
+export { reducer as cartReducer, actions as cartActions, fetchCart, addToCart, removeFromCart} from "./cartSlice"
 export * as cartSelectors from "./cartSelectors"

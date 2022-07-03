@@ -1,17 +1,15 @@
 import React, { useEffect } from "react"
-import { Col, Row } from 'antd';
 import 'antd/dist/antd.css';
-import { Table as TableAntd } from 'antd';
+import { Table as TableAntd, Col, Row } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
-import { cartActions } from "store/cartSlice";
-import { fetchCart, cartSelectors } from "store/cartSlice";
+import { fetchCart, cartSelectors, addToCart, removeFromCart } from "store/cartSlice";
 import css from "./cart.module.css"
 import { Loader } from '../common';
 
 export const Cart = () => {
 
   const goodInCart = useSelector(cartSelectors.getCart)
-
+console.log(goodInCart);
   const isLoaded = useSelector(cartSelectors.isLoaded)
   const isLoading = useSelector(cartSelectors.isLoading)
   const isError = useSelector(cartSelectors.isError)
@@ -23,14 +21,6 @@ export const Cart = () => {
   useEffect(() => {
     getCart()
   }, [])
-
-  const handleAddToCart = (product) => {
-    dispatch(cartActions.addToCart(product))
-  }
-
-  const handleRemoveFromCart = (product) => {
-    dispatch(cartActions.removeFromCart(product))
-  }
 
   const columns = [
     {
@@ -60,7 +50,7 @@ export const Cart = () => {
       dataIndex: 'add',
       key: 'add',
       render: (add, e) => (
-        <button onClick={() => handleAddToCart(e.good)} type='button'>+</button>
+        <button onClick={() => dispatch(addToCart(e.good))} type='button'>+</button>
       )
     },
     {
@@ -68,12 +58,12 @@ export const Cart = () => {
       dataIndex: 'remove',
       key: 'remove',
       render: (remove, e) => (
-        <button onClick={() => handleRemoveFromCart(e.good)} type='button'>-</button>
+        <button onClick={() => dispatch(removeFromCart(e.good))} type='button'>-</button>
       )
     },
   ];
 
-  if (goodInCart.length !== 0) {
+  if (goodInCart?.length !== 0) {
     return (
       <div className={css.wrapper}>
          {isLoading && <Loader />}
@@ -86,8 +76,8 @@ export const Cart = () => {
         {isError && <p>Товар в корзине не найден, попробуйте позже</p>}
       </div>
     )
-  } else {
+  } 
     return <h2>Корзина пуста</h2>
-  }
+  
 }
 

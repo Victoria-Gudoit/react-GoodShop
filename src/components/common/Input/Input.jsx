@@ -1,10 +1,10 @@
-export const Input = (props) => {
+export const Input = ({setText, text}) => {
 
     return (
       <div>
         <input
-          value={props.text}
-          onChange={({ target }) => props.setText(target.value)}
+          value={text}
+          onChange={({ target }) => setText(target.value)}
           type="text"
           placeholder="Поиск товара..."
         />

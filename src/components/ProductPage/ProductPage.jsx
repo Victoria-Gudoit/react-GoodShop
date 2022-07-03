@@ -3,12 +3,10 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import 'antd/dist/antd.css';
 import { Card as CardAntd } from 'antd';
-import 'antd/dist/antd.css';
 import { productPageSelectors, fetchProduct } from 'store/productPageSlice';
-import { cartSelectors, cartActions } from 'store/cartSlice';
+import { cartSelectors, addToCart, removeFromCart } from 'store/cartSlice';
 import css from "./product.module.css"
 import { Loader } from "../common"
-import { Header } from 'components/Header';
 
 export const ProductPage = () => {
 
@@ -16,26 +14,11 @@ export const ProductPage = () => {
 
     const history = useHistory();
 
-    const product = useSelector(productPageSelectors.getProduct)
+    const products = useSelector(productPageSelectors.getProduct)
 
-    const good = useSelector(cartSelectors.getGoodById(id));
+    const goodInCart = useSelector(cartSelectors.getCart)
 
-    const count = good ? good.count : 0
-
-
-    useEffect(() => {
-        const requestOptions = {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ good, count },
-            )
-
-        };
-        fetch('/api/cart', requestOptions)
-    }, [good]);
+    console.log(goodInCart);
 
     const isLoaded = useSelector(productPageSelectors.isLoaded)
     const isLoading = useSelector(productPageSelectors.isLoading)
@@ -45,23 +28,20 @@ export const ProductPage = () => {
 
     const getProduct = (id) => dispatch(fetchProduct(id))
 
-    const handleAddToCart = (product) => {
-        dispatch(cartActions.addToCart(product))
-    }
-
-    const handleRemoveFromCart = (product) => {
-        dispatch(cartActions.removeFromCart(product))
+    const fetchCart = () => {
+        dispatch(fetchCart())
     }
 
     useEffect(() => {
         getProduct(id)
     }, [id])
 
+
     return (
         <div>
             {isLoading && <Loader />}
             {isLoaded &&
-                product.map((product) => (<div className="site-card-border-less-wrapper">
+                products.map((product) => (<div className="site-card-border-less-wrapper">
                     <div className={css.wrapper}>
                         <CardAntd
                             title={product.label}
@@ -72,9 +52,10 @@ export const ProductPage = () => {
                             <img className={css.img} alt="product" src={product.img} />
                             <p>{product.description}</p>
                             <p>{`${product.price} $`}</p>
-                            <button onClick={() => handleAddToCart(product)} type='button'>Добавить в корзину</button>
-                            {good && (<><Header counter={good.count} />
-                                <button onClick={() => handleRemoveFromCart(product)}>Удалить с корзины</button></>)}
+                            <button onClick={() => dispatch(addToCart(product))} type='button'>Добавить в корзину</button>
+                            {goodInCart.length !== 0 && (<>
+                                <button onClick={() => dispatch(addToCart(product))}>+</button>
+                                <button onClick={() => dispatch(removeFromCart(product))}>-</button></>)}
                         </CardAntd></div>
                 </div>
                 ))}

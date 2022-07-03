@@ -1,13 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import css from "./search.module.css"
 
-export const DropDownSearch = (props) => {
-    const { categoryTypeId } = useParams()
+export const DropDownSearch = ({options}) => {
+  
   return (
     <ul className={css.wrapper}>
-      {props.options ? props.options.map((item) => (
+      {options.length ? options.map((item) => (
         <li>
-          <Link to={`/${categoryTypeId}/${item.id}`}>
+          <Link to={`/${item.categoryTypeId}/${item.id}`}>
             {item.label}
           </Link>
         </li>
