@@ -5,7 +5,7 @@ import { getProductByText } from "api/Api";
 import css from "./header.module.css";
 import { Input, DropDownSearch } from "../common"
 import { useSelector } from "react-redux";
-import { cartSelectors} from 'store/cartSlice';
+import { cartSelectors } from 'store/cartSlice';
 import { ShoppingCartOutlined } from "@ant-design/icons";
 
 export const Header = () => {
@@ -28,7 +28,6 @@ export const Header = () => {
     } else {
       setDropDownSearch(false)
     }
-
   }, [text]);
 
   return (
@@ -39,7 +38,7 @@ export const Header = () => {
         </Link>
         <div>
           <Input text={text} setText={setText} />
-          {dropDownSearch && <DropDownSearch options={options} />}
+          {dropDownSearch && <DropDownSearch  options={options} />}
         </div>
 
         <ul className={css.list}>
@@ -47,7 +46,7 @@ export const Header = () => {
             <li key={route}>
               <Link className={css.link} to={`/${route}`}>
                 {route === 'cart' ? <> <ShoppingCartOutlined style={{ fontSize: '23px' }} /> {goodInCart?.length ? goodInCart?.length : ''} </> : 'Все товары'}
-                
+
               </Link>
             </li>
           ))}

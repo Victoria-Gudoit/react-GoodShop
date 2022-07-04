@@ -31,18 +31,6 @@ export const getCart = () => {
 
 export const updateCart = (good, count) => { return request(HOST_CART, { method: 'PUT', body: JSON.stringify({ good, count }) }) }
 
-
-export const getGoodsBySort = () => {
-  return request(`${HOST}?sortBy=price&sortDirection=$asc`);
-};
-
-export const getGoodsByMinPrice = (minPrice) => {
-  return request(`${HOST}?minPrice=${minPrice}`);
-};
-
 export const getGoodsByLimit = (offset, limit) => {
   return request(`${HOST}?offest=${offset}&limit=${limit}`);
-};
-export const getGoodsByMaxPrice = (maxPrice) => {
-  return request(`${HOST}?maxPrice=${maxPrice}`);
 };
