@@ -43,11 +43,11 @@ export const Header = () => {
         </div>
 
         <ul className={css.list}>
-          {["cart"].map((route) => (
+          {["cart", 'goods'].map((route) => (
             <li key={route}>
               <Link className={css.link} to={`/${route}`}>
-                <ShoppingCartOutlined style={{ fontSize: '23px' }} />
-                {goodInCart?.length ? goodInCart?.length : ''}
+                {route === 'cart' ? <> <ShoppingCartOutlined style={{ fontSize: '23px' }} /> {goodInCart?.length ? goodInCart?.length : ''} </> : 'Все товары'}
+                
               </Link>
             </li>
           ))}
