@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
-import { useParams, useHistory  } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import 'antd/dist/antd.css';
 import { Card as CardAntd } from 'antd';
-import 'antd/dist/antd.css';
-import { productPageSelectors } from 'store/productPageSlice';
-import { fetchProduct } from 'store/productPageSlice';
+import { productPageSelectors, fetchProduct } from 'store/productPageSlice';
+import { addToCart } from 'store/cartSlice';
 import css from "./product.module.css"
 import { Loader } from "../common"
 
-
 export const ProductPage = () => {
+
     const { id } = useParams()
 
     const history = useHistory();
@@ -27,14 +26,14 @@ export const ProductPage = () => {
 
     useEffect(() => {
         getProduct(id)
-    }, [])
+    }, [id])
 
 
     return (
         <div>
             {isLoading && <Loader />}
             {isLoaded &&
-                products.map((product) => (<div className="site-card-border-less-wrapper">
+                products.map((product) => (<div key={product.id} className="site-card-border-less-wrapper">
                     <div className={css.wrapper}>
                         <CardAntd
                             title={product.label}
@@ -45,7 +44,7 @@ export const ProductPage = () => {
                             <img className={css.img} alt="product" src={product.img} />
                             <p>{product.description}</p>
                             <p>{`${product.price} $`}</p>
-                            <button type='button'>Добавить в корзину</button>
+                            <button onClick={() => dispatch(addToCart(product))} type='button'>Добавить в корзину</button>
                         </CardAntd></div>
                 </div>
                 ))}

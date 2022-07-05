@@ -1,6 +1,5 @@
 import { useState } from "react";
 import css from "./registration.module.css";
-import { CalendarOriginal } from "../common";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authAction } from "store/registrationSlice"; 
@@ -9,7 +8,6 @@ import { Formik, Form } from "formik";
 import { TextField } from "./TextField";
 
 export const RegistrationPage = () => {
-  const [calendar, setCalendar] = useState(false);
 
   const dispatch = useDispatch();
   const checkAuth = () => dispatch(authAction.checkAuth());
@@ -30,7 +28,6 @@ export const RegistrationPage = () => {
       .required("Password is required"),
   });
 
- const clickHandlerCalendar = () => { setCalendar((prev) => !prev) }
 
   const handleSubmit = () => {
     checkAuth();
@@ -54,15 +51,6 @@ export const RegistrationPage = () => {
           <Form className={css.form}>
             <TextField label="First Name" name="firstName" type="text" />
             <TextField label="Last Name" name="lastName" type="text" />
-            <div className={css.calendar}>
-              <button type="button"
-                onClick={clickHandlerCalendar}
-                className={css.btn__calendar}
-              >
-                Календарь
-              </button>
-              {calendar && <CalendarOriginal />}
-            </div>
             <TextField label="Email" name="email" type="email" />
             <TextField label="Password" name="password" type="password" />
             <TextField

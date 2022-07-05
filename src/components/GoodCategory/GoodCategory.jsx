@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { Card } from "components/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { popularCategoriesSelectors } from "store/popularCategoriesSlice";
-import { fetchPopularCategories } from "store/popularCategoriesSlice";
+import { popularCategoriesSelectors, fetchPopularCategories } from "store/popularCategoriesSlice";
 import { Loader } from "../common"
 
 export const GoodCategory = () => {

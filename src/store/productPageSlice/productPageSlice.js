@@ -2,9 +2,8 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {LOAD_STATUSES, PRODUCT_PAGE} from "../constants";
 import { getProductById } from "api/Api"; 
 
-export const fetchProduct = createAsyncThunk(`${PRODUCT_PAGE}/getProduct`, async (ids) => {
-    const result = await getProductById(ids);
-    console.log(result.items);
+export const fetchProduct = createAsyncThunk(`${PRODUCT_PAGE}/getProduct`, async (id) => {
+    const result = await getProductById(id);
     return result.items;
 });
 

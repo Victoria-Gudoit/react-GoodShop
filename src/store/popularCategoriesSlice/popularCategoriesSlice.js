@@ -2,10 +2,7 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {getPopularCategories} from "api/Api";
 import {LOAD_STATUSES, POPULAR_CATEGORIES_SLICE} from "../constants";
 
-export const fetchPopularCategories = createAsyncThunk(`${POPULAR_CATEGORIES_SLICE}/getPopularCategories`, async () => {
-    const result = await getPopularCategories();
-    return result;
-});
+export const fetchPopularCategories = createAsyncThunk(`${POPULAR_CATEGORIES_SLICE}/getPopularCategories`, getPopularCategories);
 
 export const {actions, reducer} = createSlice({
     name: POPULAR_CATEGORIES_SLICE,

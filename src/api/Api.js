@@ -1,10 +1,9 @@
 import { request } from "./request";
 
 const HOST = "/api/goods";
-// const HOST_ID = "api/goods?categoryTypeId=";
-// const HOST_PRODUCT_ID = "/api/goods?ids=";
 const HOST_CATEGORIES = 'api/categories'
 const HOST_POPULAR_CATEGORIES = 'api/popular_categories'
+const HOST_CART = '/api/cart'
 
 export const getProductById = (id) => {
   return request(`${HOST}?ids=${id}`);
@@ -19,5 +18,19 @@ export const getPopularCategories = () => {
 };
 
 export const getCategoryById = (categoryTypeId) => {
-  return request(`${HOST}?categoryTypeId=${categoryTypeId}`);
+  return request(`${HOST}?categoryTypeIds=${categoryTypeId}`);
+};
+
+export const getProductByText = (text) => {
+  return request(`${HOST}?text=${text}`);
+};
+
+export const getCart = () => {
+  return request(HOST_CART);
+};
+
+export const updateCart = (good, count) => { return request(HOST_CART, { method: 'PUT', body: JSON.stringify({ good, count }) }) }
+
+export const getGoodsByLimit = (offset, limit) => {
+  return request(`${HOST}?offest=${offset}&limit=${limit}`);
 };

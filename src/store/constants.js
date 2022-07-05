@@ -12,3 +12,5 @@ export const POPULAR_CATEGORIES_SLICE = "popularCategories"
 export const CATEGORY_PAGE = "categoryPage"
 
 export const PRODUCT_PAGE = "productPage"
+
+export const CART = "cart"
