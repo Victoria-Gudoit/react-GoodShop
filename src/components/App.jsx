@@ -26,13 +26,13 @@ export const App = () => {
         </Route> 
         <Route path="/goods" exact>
           <GoodsPage />
-        </Route> 
-         {isAuth && <Redirect to="/" />}
-        <Route path="/registration" exact>
-          <RegistrationPage />
         </Route>
         <Route path="/" exact>
           <MainPage />
+        </Route>
+         {isAuth && <Redirect to="/" />}
+        <Route path="/registration" exact>
+          <RegistrationPage />
         </Route>
         <Route path="/:categoryTypeId" exact>
           <CategoryPage />
@@ -40,10 +40,7 @@ export const App = () => {
         <Route path="/:categoryTypeId/:id" exact>
           <ProductPage />
         </Route>
-        {isAuth && <Redirect to="/" />}
-        <Route path="/registration" exact>
-          <RegistrationPage />
-        </Route>
+
         <Redirect to="/" />
       </Switch>
       <Footer />
