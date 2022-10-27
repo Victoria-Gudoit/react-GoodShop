@@ -2,18 +2,12 @@ import { getGoodsByLimit } from "api/Api";
 import { useEffect, useState } from "react";
 import css from "./goodsPage.module.css";
 import "antd/dist/antd.css";
-import {
-  fetchGoodCategories,
-  GoodsCategoriesSelectors,
-} from "store/goodCategoriesSlice";
-import { FilterSelectors } from "../../store/filterSlice";
+import { FilterSelectors, fetchFilterGoods } from "../../store/filterSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { Sort } from "../Sort";
 
 export const GoodsPage = () => {
-  const goodCategories = useSelector(
-    GoodsCategoriesSelectors.getGoodCategories
-  );
+  const goodCategories = useSelector(FilterSelectors.getFilterGoods);
 
   const sortType = useSelector(FilterSelectors.getSort);
 
@@ -22,7 +16,7 @@ export const GoodsPage = () => {
   useEffect(() => {
     const sortBy = sortType.sortProperty.replace("-", "");
     const order = sortType.sortProperty.includes("-") ? "asc" : "desc";
-    dispatch(fetchGoodCategories({ sortBy, order }));
+    dispatch(fetchFilterGoods({ sortBy, order }));
   }, [sortType]);
 
   return (

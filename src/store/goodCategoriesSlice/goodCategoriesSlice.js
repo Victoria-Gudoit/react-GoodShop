@@ -4,11 +4,9 @@ import { LOAD_STATUSES, GOOD_CATEGORIES_SLICE } from "../constants";
 
 export const fetchGoodCategories = createAsyncThunk(
   `${GOOD_CATEGORIES_SLICE}/getGoodCategories`,
-  async (params) => {
-    const { sortBy, order } = params;
-    const result = await getGoodCategories(sortBy, order);
-    console.log(result.items);
-    return result.items;
+  async () => {
+    const result = await getGoodCategories();
+    return result.categories;
   }
 );
 
@@ -17,15 +15,6 @@ export const { actions, reducer } = createSlice({
   initialState: {
     data: [],
     loadStatus: LOAD_STATUSES.UNKNOWN,
-    sort: {
-      name: "по цене ↓",
-      sortProperty: "price",
-    },
-  },
-  reducers: {
-    setSortProperty(state, action) {
-      state.sort = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchGoodCategories.pending, (state) => {

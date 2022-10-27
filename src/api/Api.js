@@ -9,13 +9,13 @@ export const getProductById = (id) => {
   return request(`${HOST}?ids=${id}`);
 };
 
-export const getGoodCategories = (sortBy, order) => {
+export const getGoods = (sortBy, order) => {
   return request(`${HOST}?sortBy=${sortBy}&sortDirection=${order}`);
 };
 
-// export const getGoodCategories = (sortBy, order) => {
-//   return request(`${HOST_CATEGORIES}?sortBy=${sortBy}&sortDirection=${order}`);
-// };
+export const getGoodCategories = () => {
+  return request(`${HOST_CATEGORIES}`);
+};
 
 export const getPopularCategories = () => {
   return request(HOST_POPULAR_CATEGORIES);

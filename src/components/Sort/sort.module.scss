@@ -1,21 +1,22 @@
 .sort {
   position: relative;
-  width: 180px;
-  cursor: pointer;
-  &__label {
+  width: 210px;
+  cursor: pointer;}
+  .label {
     display: flex;
     align-items: center;
 
     b {
       margin-right: 8px;
+      font-weight: 500;
     }
 
     span {
-      color: #fff;
-      border-bottom: 1px dashed #fff;
+      color: #000;
       cursor: pointer;
+      font-weight: 500;
     }
-  }}
+  }
 
   .popup {
     position: absolute;
@@ -23,8 +24,10 @@
     margin-top: 10px;
     background: #ffffff;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
+    border: #fff ;
     border-radius: 10px;
     overflow: hidden;
+    border: 1px solid rgb(66, 66, 66);
 
     ul {
       display: flex;
