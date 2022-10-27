@@ -9,8 +9,10 @@ export const getProductById = (id) => {
   return request(`${HOST}?ids=${id}`);
 };
 
-export const getGoods = (sortBy, order) => {
-  return request(`${HOST}?sortBy=${sortBy}&sortDirection=${order}`);
+export const getGoods = (sortBy, order, categoryTypeIds) => {
+  return request(
+    `${HOST}?sortBy=${sortBy}&sortDirection=${order}&categoryTypeIds=${categoryTypeIds}`
+  );
 };
 
 export const getGoodCategories = () => {

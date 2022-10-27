@@ -5,8 +5,9 @@ import { LOAD_STATUSES } from "../constants";
 export const fetchFilterGoods = createAsyncThunk(
   "filter/filterGoods",
   async (params) => {
-    const { sortBy, order } = params;
-    const result = await getGoods(sortBy, order);
+    const { sortBy, order, categoryTypeIds } = params;
+    const result = await getGoods(sortBy, order, categoryTypeIds);
+    console.log(result.items);
     return result.items;
   }
 );
@@ -20,10 +21,14 @@ export const { actions, reducer } = createSlice({
       name: "по цене ↓",
       sortProperty: "price",
     },
+    categoryId: 1,
   },
   reducers: {
     setSortType(state, action) {
       state.sort = action.payload;
+    },
+    setCategoryId(state, action) {
+      state.categoryId = action.payload;
     },
   },
   extraReducers: (builder) => {
