@@ -1,0 +1,43 @@
+.sort {
+  position: relative;
+  width: 180px;
+  cursor: pointer;
+  &__label {
+    display: flex;
+    align-items: center;
+
+    b {
+      margin-right: 8px;
+    }
+
+    span {
+      color: #fff;
+      border-bottom: 1px dashed #fff;
+      cursor: pointer;
+    }
+  }}
+
+  .popup {
+    position: absolute;
+    left: 0;
+    margin-top: 10px;
+    background: #ffffff;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
+    border-radius: 10px;
+    overflow: hidden;
+
+    ul {
+      display: flex;
+      overflow: hidden;
+      margin-bottom: 0;
+      li { 
+        padding: 5px 20px;
+        cursor: pointer;
+
+        &.active,
+        &:hover {
+          background: rgba(254, 95, 30, 0.05);
+        }
+      }
+    }
+  }

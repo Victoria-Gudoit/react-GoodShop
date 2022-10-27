@@ -1,5 +1,8 @@
-import { getIsLoadingSeletor, getIsLoadedSeletor, getIsErrorSeletor } from "../common"
-
+import {
+  getIsLoadingSeletor,
+  getIsLoadedSeletor,
+  getIsErrorSeletor,
+} from "../common";
 
 const getGoodCategoriesSlice = (state) => state.goodsCategories;
 
