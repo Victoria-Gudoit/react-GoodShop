@@ -1,9 +1,14 @@
 .categories {
+  margin-top: 15px;
     ul {
       display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      row-gap: 10px;
   
       li {
-        background-color: #f9f9f9;
+        background-color: #f3f3f3;
         padding: 13px 30px;
         border-radius: 30px;
         margin-right: 10px;
@@ -12,11 +17,11 @@
         transition: background-color 0.1s ease-in-out;
   
         &:hover {
-          background-color: darken(#f9f9f9, 2%);
+          background-color: darken(#e9e6e6, 2%);
         }
   
         &:active {
-          background-color: darken(#f9f9f9, 5%);
+          background-color: darken(#f3f3f3, 5%);
         }
   
         &.active {
@@ -25,4 +30,8 @@
         }
       }
     }
+  }
+
+  .a {
+    color: red;
   }

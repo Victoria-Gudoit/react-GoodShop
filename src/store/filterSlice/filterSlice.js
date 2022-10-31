@@ -5,8 +5,14 @@ import { LOAD_STATUSES } from "../constants";
 export const fetchFilterGoods = createAsyncThunk(
   "filter/filterGoods",
   async (params) => {
-    const { sortBy, order, categoryTypeIds } = params;
-    const result = await getGoods(sortBy, order, categoryTypeIds);
+    const { sortBy, order, categoryTypeIds, offset, limit } = params;
+    const result = await getGoods(
+      sortBy,
+      order,
+      categoryTypeIds,
+      offset,
+      limit
+    );
     console.log(result.items);
     return result.items;
   }
@@ -22,6 +28,8 @@ export const { actions, reducer } = createSlice({
       sortProperty: "price",
     },
     categoryId: 1,
+    offset: 1,
+    limit: 10,
   },
   reducers: {
     setSortType(state, action) {
@@ -29,6 +37,12 @@ export const { actions, reducer } = createSlice({
     },
     setCategoryId(state, action) {
       state.categoryId = action.payload;
+    },
+    setOffset(state, action) {
+      state.offset = action.payload;
+    },
+    setLimit(state, action) {
+      state.limit = action.payload;
     },
   },
   extraReducers: (builder) => {

@@ -23,8 +23,8 @@ export const Categories = ({ value, onChangeCategory }) => {
         {categories.map((category, index) => (
           <li
             key={index}
-            // className={value === category.categoryTypeIds ? "active" : ""}
-            onClick={() => onChangeCategory(index)}
+            className={value === index + 1 ? scss.active : ""}
+            onClick={() => onChangeCategory(index + 1)}
           >
             {category.label}
           </li>

@@ -1,22 +1,32 @@
-import { getGoodsByLimit } from "api/Api";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import css from "./goodsPage.module.css";
-import "antd/dist/antd.css";
 import {
   FilterSelectors,
   fetchFilterGoods,
   filterActions,
 } from "../../store/filterSlice";
-import { useSelector, useDispatch } from "react-redux";
 import { Sort } from "../Sort";
 import { Categories } from "components/Categories/Categories";
+import { Pagination } from "components/Pagination";
 
 export const GoodsPage = () => {
   const goodCategories = useSelector(FilterSelectors.getFilterGoods);
 
   const sortType = useSelector(FilterSelectors.getSort);
   const category = useSelector(FilterSelectors.getCategoryId);
-  console.log(category);
+  const offset = useSelector(FilterSelectors.getOffset);
+
+  const limit = useSelector(FilterSelectors.getLimit);
+
+  //////////////
+  const indexOfLastPost = offset * limit;
+  const indexOfFirstPost = indexOfLastPost - limit;
+  const currentProducts = goodCategories.slice(
+    indexOfFirstPost,
+    indexOfLastPost
+  );
+  const countOfPages = Math.ceil(goodCategories.length / limit);
 
   const dispatch = useDispatch();
 
@@ -24,12 +34,16 @@ export const GoodsPage = () => {
     dispatch(filterActions.setCategoryId(index));
   }, []);
 
+  const onChangePage = (index) => {
+    dispatch(filterActions.setOffset(index));
+  };
+
   useEffect(() => {
     const categoryTypeIds = category > 0 ? `${category}` : "";
     const sortBy = sortType.sortProperty.replace("-", "");
     const order = sortType.sortProperty.includes("-") ? "asc" : "desc";
-    dispatch(fetchFilterGoods({ sortBy, order, categoryTypeIds }));
-  }, [sortType, category]);
+    dispatch(fetchFilterGoods({ sortBy, order, categoryTypeIds, offset }));
+  }, [sortType, category, offset]);
 
   return (
     <div>
@@ -44,7 +58,7 @@ export const GoodsPage = () => {
           </tr>
         </thead>
         <tbody>
-          {goodCategories.map((good) => (
+          {currentProducts.map((good) => (
             <tr key={good.id}>
               <td>{good.label}</td>
               <td>{good.price}</td>
@@ -53,6 +67,11 @@ export const GoodsPage = () => {
           ))}
         </tbody>
       </table>
+      <Pagination
+        countOfPages={countOfPages}
+        onChangePage={onChangePage}
+        offset={offset}
+      />
     </div>
   );
 };
