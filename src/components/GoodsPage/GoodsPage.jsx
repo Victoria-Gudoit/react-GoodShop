@@ -9,6 +9,8 @@ import {
 import { Sort } from "../Sort";
 import { Categories } from "components/Categories/Categories";
 import { Pagination } from "components/Pagination";
+import { PriceSlider } from "components/Slider";
+import { Link } from "react-router-dom";
 
 export const GoodsPage = () => {
   const goodCategories = useSelector(FilterSelectors.getFilterGoods);
@@ -16,8 +18,9 @@ export const GoodsPage = () => {
   const sortType = useSelector(FilterSelectors.getSort);
   const category = useSelector(FilterSelectors.getCategoryId);
   const offset = useSelector(FilterSelectors.getOffset);
-
   const limit = useSelector(FilterSelectors.getLimit);
+  const maxPrice = useSelector(FilterSelectors.getmaxPrice);
+  const minPrice = useSelector(FilterSelectors.getminPrice);
 
   //////////////
   const indexOfLastPost = offset * limit;
@@ -38,17 +41,35 @@ export const GoodsPage = () => {
     dispatch(filterActions.setOffset(index));
   };
 
+  const onChangePrice = (max) => {
+    dispatch(filterActions.setPrice(max));
+  };
+
   useEffect(() => {
     const categoryTypeIds = category > 0 ? `${category}` : "";
     const sortBy = sortType.sortProperty.replace("-", "");
     const order = sortType.sortProperty.includes("-") ? "asc" : "desc";
-    dispatch(fetchFilterGoods({ sortBy, order, categoryTypeIds, offset }));
-  }, [sortType, category, offset]);
+    dispatch(
+      fetchFilterGoods({
+        sortBy,
+        order,
+        categoryTypeIds,
+        offset,
+        maxPrice,
+        minPrice,
+      })
+    );
+  }, [sortType, category, offset, maxPrice, minPrice]);
 
   return (
     <div>
       <Sort />
       <Categories value={category} onChangeCategory={onChangeCategory} />
+      <PriceSlider
+        maxPrice={maxPrice}
+        minPrice={minPrice}
+        onChangePrice={onChangePrice}
+      />
       <table className={css.table}>
         <thead>
           <tr>
@@ -60,7 +81,11 @@ export const GoodsPage = () => {
         <tbody>
           {currentProducts.map((good) => (
             <tr key={good.id}>
-              <td>{good.label}</td>
+              <td>
+                <Link to={`${good.categoryTypeId}/${good.id}`}>
+                  {good.label}
+                </Link>
+              </td>
               <td>{good.price}</td>
               <td>{good.description}</td>{" "}
             </tr>

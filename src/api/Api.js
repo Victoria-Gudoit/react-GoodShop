@@ -9,9 +9,16 @@ export const getProductById = (id) => {
   return request(`${HOST}?ids=${id}`);
 };
 
-export const getGoods = (sortBy, order, categoryTypeIds, offset) => {
+export const getGoods = (
+  sortBy,
+  order,
+  categoryTypeIds,
+  offset,
+  minPrice,
+  maxPrice
+) => {
   return request(
-    `${HOST}?sortBy=${sortBy}&sortDirection=${order}&categoryTypeIds=${categoryTypeIds}&offest=${offset}`
+    `${HOST}?sortBy=${sortBy}&sortDirection=${order}&categoryTypeIds=${categoryTypeIds}&offest=${offset}&minPrice=${minPrice}&maxPrice=${maxPrice}`
   );
 };
 
