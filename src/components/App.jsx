@@ -11,28 +11,30 @@ import { registrationSelectors } from "store/registrationSlice";
 import css from "./style.module.css";
 import { Cart } from "components/Cart";
 import { GoodsPage } from "./GoodsPage";
+import { LoginPageForm } from "./LoginPage";
 
 export const App = () => {
-
   const isAuth = useSelector(registrationSelectors.getAuth);
 
   return (
-
     <div className={css.wrapper}>
       <Header />
       <Switch>
-      <Route path="/cart" exact>
+        <Route path="/cart" exact>
           <Cart />
-        </Route> 
+        </Route>
         <Route path="/goods" exact>
           <GoodsPage />
         </Route>
         <Route path="/" exact>
           <MainPage />
         </Route>
-         {isAuth && <Redirect to="/" />}
+        {isAuth && <Redirect to="/" />}
         <Route path="/registration" exact>
           <RegistrationPage />
+        </Route>
+        <Route path="/login" exact>
+          <LoginPageForm />
         </Route>
         <Route path="/:categoryTypeId" exact>
           <CategoryPage />

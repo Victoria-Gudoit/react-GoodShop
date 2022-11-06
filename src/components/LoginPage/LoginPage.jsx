@@ -1,6 +1,6 @@
 import css from "./loginPage.module.css";
 import { Link } from "react-router-dom";
-import { registrationSelectors } from "store/registrationSlice"; 
+import { registrationSelectors } from "store/registrationSlice";
 import { useSelector } from "react-redux";
 
 export const LoginPage = () => {
@@ -12,7 +12,9 @@ export const LoginPage = () => {
         <button className={css.btn}>Выйти</button>
       ) : (
         <div>
-          <button className={css.btn}>Войти</button>
+          <Link to={"/login"} className={css.btn}>
+            Войти
+          </Link>
           <Link to={"/registration"} className={css.btn}>
             Зарегистрироваться
           </Link>
