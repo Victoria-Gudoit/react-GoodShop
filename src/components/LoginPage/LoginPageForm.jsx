@@ -1,10 +1,21 @@
 import React from "react";
 import css from "./loginPage.module.css";
 import { useState } from "react";
+import { authAction, fetchUserr } from "store/registrationSlice";
+import { useDispatch } from "react-redux";
 
 export const LoginPageForm = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+
+  const checkAuth = () => dispatch(authAction.checkAuth());
+
+  const handleLogin = () => {
+    dispatch(fetchUserr({ login, password }));
+    checkAuth();
+  };
+
   return (
     <h1>
       <form className={css.loginForm}>
@@ -30,7 +41,7 @@ export const LoginPageForm = () => {
           />
         </div>
         <div>
-          <button className={css.blackBtn} type="submit">
+          <button onClick={handleLogin} className={css.blackBtn} type="submit">
             Войти
           </button>
         </div>

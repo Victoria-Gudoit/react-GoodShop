@@ -4,6 +4,7 @@ const HOST = "/api/goods";
 const HOST_CATEGORIES = "api/categories";
 const HOST_POPULAR_CATEGORIES = "api/popular_categories";
 const HOST_CART = "/api/cart";
+const HOST_REGISTRATION = "api/registration";
 
 export const getProductById = (id) => {
   return request(`${HOST}?ids=${id}`);

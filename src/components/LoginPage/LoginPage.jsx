@@ -9,7 +9,9 @@ export const LoginPage = () => {
   return (
     <div className={css.wrapper}>
       {isAuth ? (
-        <button className={css.btn}>Выйти</button>
+        <>
+          <button className={css.btn}>Выйти</button>
+        </>
       ) : (
         <div>
           <Link to={"/login"} className={css.btn}>

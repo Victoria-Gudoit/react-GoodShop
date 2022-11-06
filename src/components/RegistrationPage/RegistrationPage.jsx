@@ -2,15 +2,29 @@ import { useState } from "react";
 import css from "./registration.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { authAction } from "store/registrationSlice"; 
+import { authAction, fetchUser } from "store/registrationSlice";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import { TextField } from "./TextField";
 
 export const RegistrationPage = () => {
+  const [login, setLogin] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
   const checkAuth = () => dispatch(authAction.checkAuth());
+
+  const handleRegistration = () => {
+    dispatch(
+      fetchUser({
+        login,
+        email,
+        password,
+      })
+    );
+  };
 
   const validate = Yup.object({
     firstName: Yup.string()
@@ -28,7 +42,6 @@ export const RegistrationPage = () => {
       .required("Password is required"),
   });
 
-
   const handleSubmit = () => {
     checkAuth();
   };
@@ -36,38 +49,52 @@ export const RegistrationPage = () => {
   return (
     <div>
       <div className={css.wrapper}>
-        <h1 className={css.title}>Регистрация</h1>
-        <Formik
-          initialValues={{
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-          }}
-          validationSchema={validate}
-          onSubmit={handleSubmit}
-        >
-          <Form className={css.form}>
-            <TextField label="First Name" name="firstName" type="text" />
-            <TextField label="Last Name" name="lastName" type="text" />
-            <TextField label="Email" name="email" type="email" />
-            <TextField label="Password" name="password" type="password" />
-            <TextField
-              label="Confirm Password"
-              name="confirmPassword"
-              type="password"
+        <form className={css.loginForm}>
+          <h1 className={css.title}>Регистрация</h1>
+          <div>
+            <input
+              className={css.loginFormInput}
+              type="text"
+              placeholder="first name"
+              onChange={(event) => setLogin(event.target.value)}
+              value={login}
+              required
             />
-            <div className={css.block}>
-              <button className={css.btn} type="submit">
-                Зарегистрироваться
-              </button>
-              <Link to={"/"} className={css.btn} type="reset">
-                Отмена
-              </Link>
-            </div>
-          </Form>
-        </Formik>
+          </div>
+          <div>
+            <input
+              className={css.loginFormInput}
+              type="text"
+              placeholder="email"
+              onChange={(event) => setEmail(event.target.value)}
+              value={email}
+              required
+            />
+          </div>
+          <div>
+            <input
+              className={css.loginFormInput}
+              type="password"
+              placeholder="Пароль"
+              onChange={(event) => setPassword(event.target.value)}
+              value={password}
+              required
+            />
+          </div>
+          <div className={css.block}>
+            <Link
+              to={"/login"}
+              onClick={handleRegistration}
+              className={css.btn}
+              type="submit"
+            >
+              Зарегистрироваться
+            </Link>
+            <Link to={"/"} className={css.btn} type="reset">
+              Отмена
+            </Link>
+          </div>
+        </form>
       </div>
     </div>
   );
