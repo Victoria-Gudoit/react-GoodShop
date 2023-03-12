@@ -1,8 +1,8 @@
 <h1 align="center">Online Store</h1>
 
-![chrome_sdmXycFoS6](https://user-images.githubusercontent.com/67506976/178579485-d0b67b6c-44af-4120-8394-01427386e4a2.png)
-![chrome_EXmhnmAcce](https://user-images.githubusercontent.com/67506976/178579503-df8cfb88-f337-4697-9207-3c95127d0796.png)
-![chrome_JJHB30cE0G](https://user-images.githubusercontent.com/67506976/178579515-89d9526d-d194-4e9c-873f-f0d75707aa01.png)
+![chrome_N3cbKVP8pL](https://user-images.githubusercontent.com/67506976/224548300-3114be1f-2854-41be-9980-55b34da646d1.png)
+
+![chrome_dzSvBrPDL0](https://user-images.githubusercontent.com/67506976/224548306-2b608607-5f4e-477a-bab8-7ce04c7956f3.png)
 
 # Technologies:
 <code>+</code> HTML
